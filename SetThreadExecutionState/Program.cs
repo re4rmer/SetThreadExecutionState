@@ -41,7 +41,7 @@ while (allower)
 
 }
 
-Thread.Sleep(2000);
+Thread.Sleep(1500);
 
 class StateController
 {
