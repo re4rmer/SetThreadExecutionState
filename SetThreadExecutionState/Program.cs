@@ -1,36 +1,37 @@
 ﻿using System.Runtime.InteropServices;
 
-string comanda;
+string? comanda;
 bool allower = true;
 while (allower)
 {
-    Console.WriteLine("Введите комманду:");
+    Console.WriteLine("Введите команду:");
     Console.Write(">");
-    comanda = "com_" + Console.ReadLine();
+    comanda = Console.ReadLine();
+    comanda ??= "null";
     switch (comanda.ToUpper())
     {
-        case "COM_SHINE":
-        case "COM_S":
+        case "SHINE":
+        case "S":
             StateController.PreventMonitorPowerdown();
             System.Diagnostics.Process.Start("CMD.exe", "/C pause").WaitForExit();
             StateController.Continuous();
             break;
 
-        case "COM_AWAKE":
-        case "COM_A":
+        case "AWAKE":
+        case "A":
             StateController.PreventSleep();
             System.Diagnostics.Process.Start("CMD.exe", "/C pause").WaitForExit();
             StateController.Continuous();
             break ;
 
-        case "COM_QUIT":
-        case "COM_Q":
+        case "QUIT":
+        case "Q":
             allower = false;
             Console.WriteLine("Выход");
             break;
-        case "COM_HELP":
-        case "COM_H":
-            Console.WriteLine("Комманды:\nshine или s - запрещает отключение монитора;\nawake или a - запрещает спящий режим;\nquit или q - выход из программы.\nhelp или h - данная справка\nПри вводе всякой отсебятины программа будет требовать ввода корректной команды.");
+        case "HELP":
+        case "H":
+            Console.WriteLine("Команды:\nshine или s - запрещает отключение монитора;\nawake или a - запрещает спящий режим;\nquit или q - выход из программы.\nhelp или h - данная справка\nПри вводе всякой отсебятины программа будет требовать ввода корректной команды.");
              break ;
         
         default:
